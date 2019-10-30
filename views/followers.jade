@@ -1,0 +1,29 @@
+extends layout
+block content
+    h1 #{title}
+    p This gets a list of followers for a given Twitter ID from the database
+    br
+
+    form.well(action="/followers", method="post")
+      div(class="form-group")
+        label(for="uidInput") Twitter ID:
+        input(name="uid", type="textbox", id="uidInput", value=input_value)
+      br
+      button.btn(type="submit", class="btn btn-primary") Get Followers   
+    br
+    table.table.table-striped.table-bordered
+      thead
+        tr
+          td Follower ID
+          td Message Count
+      if (typeof items === "undefined")
+        tbody
+          tr
+            td
+            td
+      else
+        tbody
+          each follower in items
+            tr
+              td #{follower.followerID}
+              td #{follower.messageCount}

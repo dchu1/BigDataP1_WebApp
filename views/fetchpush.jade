@@ -1,0 +1,19 @@
+extends layout
+block content
+    h1 #{title}
+    p This gets data from the twitter.com API for a given Twitter ID and pushes it to the database
+    br
+    if (typeof input_value !== "undefined") 
+      h3 Request sent for #{input_value}
+    form.well(action="/fetchpush", method="post")
+      div(class="form-group")
+        label(for="uidInput") Twitter ID:
+        input(name="uid", type="textbox", id="uidInput", class="form-control")
+      div(class="form-group")
+        label(for="minFolInput") Minimum Followers (optional):
+        input(name="min_followers", id="minFolInput", class="form-control", placeholder="1000", type="textbox")
+      div(class="form-group")
+        label(for="maxMesInput") Minimum Messages per Follower (optional):
+        input(name="max_messages", id="maxMesInput", class="form-control", placeholder="200", type="textbox")
+      br
+      button.btn(type="submit", class="btn btn-primary") Fetch Data  

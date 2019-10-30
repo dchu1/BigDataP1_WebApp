@@ -1,0 +1,29 @@
+extends layout
+block content
+    h1 #{title}
+    p This gets a list of messages for a given Twitter ID from the database
+    br
+
+    form.well(action="/messages", method="post")
+      div(class="form-group")
+        label(for="uidInput") Twitter ID:
+        input(name="uid", type="textbox", id="uidInput", value=input_value)
+      br
+      button.btn(type="submit", class="btn btn-primary") Get Messages   
+    br
+    table.table.table-striped.table-bordered
+      thead
+        tr
+          td Message ID
+          td Message
+      if (typeof items === "undefined")
+        tbody
+          tr
+            td
+            td
+      else
+        tbody
+          each message in items
+            tr
+              td #{message.tweetID}
+              td #{message.tweet}
